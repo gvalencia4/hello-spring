@@ -27,7 +27,12 @@ public class HelloController {
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public String helloWithQueryParam(@RequestParam String name, String lang) {
         // return "Hello, " + name + "!";
-        return createMessage(name, lang);
+        return  "<html>" +
+                "<body>" +
+                "<p style='color:red;'>" + createMessage(name, lang) + "</p>" +
+                "</body>" +
+                "</html>";
+
     }
 
     public static String createMessage(String name, String lang) {
