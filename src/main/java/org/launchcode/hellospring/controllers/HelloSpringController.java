@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.*;
  * Created by Chris Bay
  */
 @Controller
-@ResponseBody
 @RequestMapping("hello")
-public class HelloController {
+public class HelloSpringController {
 
     //    // Handle request at path /hello
 //    @GetMapping("hello")
@@ -20,18 +19,21 @@ public class HelloController {
 
     // lives at /hello/goodbye
     @GetMapping("goodbye")
+    @ResponseBody
     public String goodbye() {
         return "Goodbye, Spring!";
     }
 
     // Handles requests of the form /hello?name=LaunchCode
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
     public String helloWithQueryParam(@RequestParam String name) {
         return "Hello, " + name + "!";
     }
 
     // Handles requests of the form /hello/LaunchCode
     @GetMapping("{name}")
+    @ResponseBody
     public String helloWithPathParam(@PathVariable String name) {
         return "Hello, " + name + "!";
     }
@@ -39,14 +41,7 @@ public class HelloController {
     // /hello/form
     @GetMapping("form")
     public String helloForm() {
-        return "<html>" +
-                "<body>" +
-                "<form action = '/hello' method = 'post'>" + // submit a request to /hello
-                "<input type = 'text' name = 'name' >" +
-                "<input type = 'submit' value = 'Greet Me!' >" +
-                "</form>" +
-                "</body>" +
-                "</html>";
+        return "form"; // returns form.html template (.html is implied), and ResponseBody is not needed.
     }
 
 }
